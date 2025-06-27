@@ -363,57 +363,57 @@ export function QuizAttempts({ user, onBack }: QuizAttemptsProps) {
         {/* Statistics Overview */}
         {stats && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <Card className="bg-gradient-to-br from-pink-500/20 to-rose-500/20 border-pink-500/30 backdrop-blur-xl">
+            <Card className="bg-white/10 backdrop-blur-xl border-pink-500/30 shadow-xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-pink-200 text-sm font-medium">Total Attempts</p>
+                    <p className="text-gray-200 text-sm font-medium">Total Attempts</p>
                     <p className="text-3xl font-bold text-white">{stats.totalAttempts}</p>
                   </div>
-                  <div className="p-3 bg-pink-500/30 rounded-xl">
-                    <Trophy className="h-6 w-6 text-pink-200" />
+                  <div className="p-3 bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl shadow-lg">
+                    <Trophy className="h-6 w-6 text-white" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 border-green-500/30 backdrop-blur-xl">
+            <Card className="bg-white/10 backdrop-blur-xl border-green-500/30 shadow-xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-green-200 text-sm font-medium">Average Score</p>
+                    <p className="text-gray-200 text-sm font-medium">Average Score</p>
                     <p className="text-3xl font-bold text-white">{stats.averagePercentage}%</p>
                   </div>
-                  <div className="p-3 bg-green-500/30 rounded-xl">
-                    <Target className="h-6 w-6 text-green-200" />
+                  <div className="p-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl shadow-lg">
+                    <Target className="h-6 w-6 text-white" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 border-yellow-500/30 backdrop-blur-xl">
+            <Card className="bg-white/10 backdrop-blur-xl border-yellow-500/30 shadow-xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-yellow-200 text-sm font-medium">Best Score</p>
+                    <p className="text-gray-200 text-sm font-medium">Best Score</p>
                     <p className="text-3xl font-bold text-white">{stats.bestScore}%</p>
                   </div>
-                  <div className="p-3 bg-yellow-500/30 rounded-xl">
-                    <Award className="h-6 w-6 text-yellow-200" />
+                  <div className="p-3 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl shadow-lg">
+                    <Award className="h-6 w-6 text-white" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-purple-500/20 to-violet-500/20 border-purple-500/30 backdrop-blur-xl">
+            <Card className="bg-white/10 backdrop-blur-xl border-purple-500/30 shadow-xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-purple-200 text-sm font-medium">Recent Average</p>
+                    <p className="text-gray-200 text-sm font-medium">Recent Average</p>
                     <p className="text-3xl font-bold text-white">{stats.recentAverage}%</p>
                   </div>
-                  <div className="p-3 bg-purple-500/30 rounded-xl">
-                    <TrendingUp className="h-6 w-6 text-purple-200" />
+                  <div className="p-3 bg-gradient-to-r from-purple-500 to-violet-500 rounded-xl shadow-lg">
+                    <TrendingUp className="h-6 w-6 text-white" />
                   </div>
                 </div>
               </CardContent>
@@ -424,11 +424,18 @@ export function QuizAttempts({ user, onBack }: QuizAttemptsProps) {
         {/* Attempts List */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-              <Sparkles className="h-6 w-6 text-yellow-400" />
-              Your Attempts
-            </h2>
-            <Badge className="bg-gradient-to-r from-pink-500 to-violet-500 text-white px-3 py-1">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl shadow-lg">
+                <Sparkles className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
+                  Your Attempts
+                </h2>
+                <p className="text-gray-300 text-sm">Detailed history of your quiz performances</p>
+              </div>
+            </div>
+            <Badge className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 text-sm font-semibold shadow-lg">
               {attempts.length} Total
             </Badge>
           </div>
