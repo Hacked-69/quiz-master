@@ -3,7 +3,6 @@
 *Automatically synced with your [v0.dev](https://v0.dev) deployments*
 
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/hrishikesh-patels-projects-5ee76a13/v0-modern-quiz-app)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/NuW2NRp4dfJ)
 
 ## Overview
 
@@ -15,12 +14,6 @@ Any changes you make to your deployed app will be automatically pushed to this r
 Your project is live at:
 
 **[https://vercel.com/hrishikesh-patels-projects-5ee76a13/v0-modern-quiz-app](https://vercel.com/hrishikesh-patels-projects-5ee76a13/v0-modern-quiz-app)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.dev/chat/projects/NuW2NRp4dfJ](https://v0.dev/chat/projects/NuW2NRp4dfJ)**
 
 ## How It Works
 
