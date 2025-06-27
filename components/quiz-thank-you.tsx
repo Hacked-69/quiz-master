@@ -9,7 +9,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { CheckCircle, Star, Trophy, Target, Clock, MessageSquare, Sparkles, Home } from "lucide-react"
+import {
+  CheckCircle,
+  Star,
+  Trophy,
+  Target,
+  Clock,
+  MessageSquare,
+  Sparkles,
+  Home,
+  Zap,
+  Award,
+  PartyPopper,
+  Flame,
+} from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 interface QuizThankYouProps {
@@ -35,15 +48,50 @@ export function QuizThankYou({ quiz, user, score, totalQuestions, attemptId, onB
 
   const percentage = Math.round((score / totalQuestions) * 100)
 
-  const getPerformanceMessage = () => {
-    if (percentage >= 90) return { message: "Outstanding! You're a quiz master! 🏆", color: "text-yellow-600" }
-    if (percentage >= 80) return { message: "Excellent work! Well done! 🌟", color: "text-green-600" }
-    if (percentage >= 70) return { message: "Great job! Keep it up! 👏", color: "text-blue-600" }
-    if (percentage >= 60) return { message: "Good effort! Room for improvement! 💪", color: "text-orange-600" }
-    return { message: "Keep practicing! You'll get better! 📚", color: "text-purple-600" }
+  const getPerformanceData = () => {
+    if (percentage >= 90)
+      return {
+        message: "🏆 OUTSTANDING! You're a quiz master!",
+        color: "from-yellow-400 to-orange-500",
+        bgColor: "from-yellow-500/20 to-orange-500/20",
+        icon: Trophy,
+        celebration: "🎉🏆✨",
+      }
+    if (percentage >= 80)
+      return {
+        message: "🌟 EXCELLENT! Fantastic work!",
+        color: "from-green-400 to-emerald-500",
+        bgColor: "from-green-500/20 to-emerald-500/20",
+        icon: Award,
+        celebration: "🎊🌟💫",
+      }
+    if (percentage >= 70)
+      return {
+        message: "👏 GREAT JOB! Keep it up!",
+        color: "from-blue-400 to-cyan-500",
+        bgColor: "from-blue-500/20 to-cyan-500/20",
+        icon: Target,
+        celebration: "🎯👏🔥",
+      }
+    if (percentage >= 60)
+      return {
+        message: "💪 GOOD EFFORT! Room for improvement!",
+        color: "from-orange-400 to-amber-500",
+        bgColor: "from-orange-500/20 to-amber-500/20",
+        icon: Zap,
+        celebration: "💪⚡🚀",
+      }
+    return {
+      message: "📚 KEEP PRACTICING! You'll get better!",
+      color: "from-purple-400 to-violet-500",
+      bgColor: "from-purple-500/20 to-violet-500/20",
+      icon: Sparkles,
+      celebration: "📚💜🌟",
+    }
   }
 
-  const performance = getPerformanceMessage()
+  const performance = getPerformanceData()
+  const PerformanceIcon = performance.icon
 
   const handleStarClick = (starRating: number) => {
     setRating(starRating)
@@ -90,154 +138,229 @@ export function QuizThankYou({ quiz, user, score, totalQuestions, attemptId, onB
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl space-y-6">
-        {/* Main Results Card */}
-        <Card className="relative overflow-hidden border-0 shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10" />
-          <CardHeader className="text-center relative z-10 pb-4">
-            <div className="flex justify-center mb-4">
-              <div className="relative">
-                <CheckCircle className="h-20 w-20 text-green-500 drop-shadow-lg" />
-                <Sparkles className="h-8 w-8 text-yellow-400 absolute -top-2 -right-2 animate-pulse" />
-              </div>
-            </div>
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Quiz Completed!
-            </CardTitle>
-            <CardDescription className="text-lg text-gray-600 mt-2">{quiz.title}</CardDescription>
-          </CardHeader>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
+      </div>
 
-          <CardContent className="relative z-10 space-y-6">
-            {/* Score Display */}
-            <div className="text-center space-y-4">
-              <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg">
-                <Trophy className="h-8 w-8 text-yellow-500" />
-                <div>
-                  <div className="text-4xl font-bold text-gray-900">
-                    {score}/{totalQuestions}
+      {/* Floating Celebration Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <PartyPopper
+          className="absolute top-1/4 left-1/4 w-8 h-8 text-yellow-400/40 animate-bounce"
+          style={{ animationDelay: "0s" }}
+        />
+        <Sparkles
+          className="absolute top-1/3 right-1/4 w-6 h-6 text-pink-400/40 animate-bounce"
+          style={{ animationDelay: "1s" }}
+        />
+        <Trophy
+          className="absolute bottom-1/3 left-1/5 w-7 h-7 text-yellow-400/40 animate-bounce"
+          style={{ animationDelay: "2s" }}
+        />
+        <Star
+          className="absolute top-1/2 right-1/3 w-5 h-5 text-blue-400/40 animate-bounce"
+          style={{ animationDelay: "3s" }}
+        />
+        <Flame
+          className="absolute bottom-1/4 right-1/5 w-6 h-6 text-orange-400/40 animate-bounce"
+          style={{ animationDelay: "4s" }}
+        />
+      </div>
+
+      <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
+        <div className="w-full max-w-4xl space-y-8">
+          {/* Main Results Card */}
+          <Card className="bg-white/5 backdrop-blur-2xl border-white/10 shadow-2xl overflow-hidden">
+            <div className={`absolute inset-0 bg-gradient-to-br ${performance.bgColor} opacity-50`} />
+            <CardHeader className="text-center relative z-10 pb-6">
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <div className={`p-6 bg-gradient-to-r ${performance.color} rounded-full shadow-2xl`}>
+                    <PerformanceIcon className="h-16 w-16 text-white drop-shadow-lg" />
                   </div>
-                  <div className="text-sm text-gray-600">Questions Correct</div>
+                  <div className="absolute -top-2 -right-2 text-2xl animate-bounce">
+                    {performance.celebration.split("")[0]}
+                  </div>
+                  <div className="absolute -bottom-2 -left-2 text-2xl animate-bounce delay-500">
+                    {performance.celebration.split("")[1]}
+                  </div>
+                  <div className="absolute -top-2 -left-2 text-2xl animate-bounce delay-1000">
+                    {performance.celebration.split("")[2]}
+                  </div>
+                </div>
+              </div>
+              <CardTitle className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-4">
+                Quiz Completed!
+              </CardTitle>
+              <CardDescription className="text-xl text-gray-300 font-medium">{quiz.title}</CardDescription>
+            </CardHeader>
+
+            <CardContent className="relative z-10 space-y-8 pb-8">
+              {/* Score Display */}
+              <div className="text-center space-y-6">
+                <div
+                  className={`inline-flex items-center gap-4 bg-gradient-to-r ${performance.color} p-6 rounded-3xl shadow-2xl`}
+                >
+                  <Trophy className="h-10 w-10 text-white" />
+                  <div className="text-white">
+                    <div className="text-5xl lg:text-6xl font-bold">
+                      {score}/{totalQuestions}
+                    </div>
+                    <div className="text-lg opacity-90">Questions Correct</div>
+                  </div>
+                </div>
+
+                <div className="space-y-4 max-w-md mx-auto">
+                  <div className="flex items-center justify-between text-lg">
+                    <span className="text-gray-300 font-medium">Your Score</span>
+                    <span className="font-bold text-white text-2xl">{percentage}%</span>
+                  </div>
+                  <div className="relative">
+                    <Progress value={percentage} className="h-4 bg-white/10 rounded-full overflow-hidden" />
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r ${performance.color} rounded-full`}
+                      style={{ width: `${percentage}%` }}
+                    />
+                  </div>
+                </div>
+
+                <div
+                  className={`text-2xl font-bold bg-gradient-to-r ${performance.color} bg-clip-text text-transparent`}
+                >
+                  {performance.message}
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-600">Your Score</span>
-                  <span className="font-semibold">{percentage}%</span>
+              {/* Stats Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center border border-white/20">
+                  <Target className="h-8 w-8 text-blue-400 mx-auto mb-3" />
+                  <div className="text-3xl font-bold text-white mb-1">{percentage}%</div>
+                  <div className="text-gray-300">Accuracy</div>
                 </div>
-                <Progress value={percentage} className="h-3 bg-gray-200" />
+                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center border border-white/20">
+                  <Clock className="h-8 w-8 text-green-400 mx-auto mb-3" />
+                  <div className="text-3xl font-bold text-white mb-1">{quiz.time_limit}</div>
+                  <div className="text-gray-300">Minutes Allowed</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center border border-white/20">
+                  <CheckCircle className="h-8 w-8 text-purple-400 mx-auto mb-3" />
+                  <div className="text-3xl font-bold text-white mb-1">{score}</div>
+                  <div className="text-gray-300">Correct Answers</div>
+                </div>
               </div>
+            </CardContent>
+          </Card>
 
-              <div className={`text-lg font-semibold ${performance.color}`}>{performance.message}</div>
-            </div>
+          {/* Feedback Card */}
+          <Card className="bg-white/5 backdrop-blur-2xl border-white/10 shadow-2xl">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-2xl text-white">
+                <div className="p-2 bg-gradient-to-r from-pink-500 to-violet-500 rounded-xl">
+                  <MessageSquare className="h-6 w-6 text-white" />
+                </div>
+                Share Your Experience
+              </CardTitle>
+              <CardDescription className="text-gray-300 text-lg">
+                Help us improve by sharing your thoughts about this quiz
+              </CardDescription>
+            </CardHeader>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 text-center">
-                <Target className="h-6 w-6 text-blue-500 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900">{percentage}%</div>
-                <div className="text-sm text-gray-600">Accuracy</div>
-              </div>
-              <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 text-center">
-                <Clock className="h-6 w-6 text-green-500 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900">{quiz.time_limit}</div>
-                <div className="text-sm text-gray-600">Minutes Allowed</div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Feedback Card */}
-        <Card className="border-0 shadow-xl">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-xl">
-              <MessageSquare className="h-5 w-5 text-blue-500" />
-              Share Your Experience
-            </CardTitle>
-            <CardDescription>Help us improve by sharing your thoughts about this quiz</CardDescription>
-          </CardHeader>
-
-          <CardContent>
-            {!feedbackSubmitted ? (
-              <form onSubmit={handleSubmitFeedback} className="space-y-6">
-                {/* Star Rating */}
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium">Rate this quiz</Label>
-                  <div className="flex gap-1">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <button
-                        key={star}
-                        type="button"
-                        onClick={() => handleStarClick(star)}
-                        className="transition-all duration-200 hover:scale-110"
-                      >
-                        <Star
-                          className={`h-8 w-8 ${
-                            star <= rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300 hover:text-yellow-300"
-                          }`}
-                        />
-                      </button>
-                    ))}
+            <CardContent>
+              {!feedbackSubmitted ? (
+                <form onSubmit={handleSubmitFeedback} className="space-y-8">
+                  {/* Star Rating */}
+                  <div className="space-y-4">
+                    <Label className="text-lg font-medium text-white">Rate this quiz</Label>
+                    <div className="flex gap-2 justify-center">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          type="button"
+                          onClick={() => handleStarClick(star)}
+                          className="transition-all duration-200 hover:scale-125 p-2"
+                        >
+                          <Star
+                            className={`h-10 w-10 ${
+                              star <= rating
+                                ? "text-yellow-400 fill-yellow-400 drop-shadow-lg"
+                                : "text-gray-500 hover:text-yellow-300"
+                            }`}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                    {rating > 0 && (
+                      <p className="text-center text-gray-300 font-medium">
+                        {rating === 1 && "😞 Poor - Needs improvement"}
+                        {rating === 2 && "😐 Fair - Could be better"}
+                        {rating === 3 && "🙂 Good - Satisfactory"}
+                        {rating === 4 && "😊 Very Good - Well done"}
+                        {rating === 5 && "🤩 Excellent - Outstanding!"}
+                      </p>
+                    )}
                   </div>
-                  {rating > 0 && (
-                    <p className="text-sm text-gray-600">
-                      {rating === 1 && "Poor - Needs improvement"}
-                      {rating === 2 && "Fair - Could be better"}
-                      {rating === 3 && "Good - Satisfactory"}
-                      {rating === 4 && "Very Good - Well done"}
-                      {rating === 5 && "Excellent - Outstanding!"}
+
+                  {/* Feedback Text */}
+                  <div className="space-y-3">
+                    <Label htmlFor="feedback" className="text-lg font-medium text-white">
+                      Additional Comments (Optional)
+                    </Label>
+                    <Textarea
+                      id="feedback"
+                      placeholder="What did you think about this quiz? Any suggestions for improvement?"
+                      value={feedbackText}
+                      onChange={(e) => setFeedbackText(e.target.value)}
+                      rows={4}
+                      className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-purple-500 resize-none text-lg"
+                    />
+                  </div>
+
+                  <div className="flex gap-4">
+                    <Button
+                      type="submit"
+                      disabled={submittingFeedback || rating === 0}
+                      className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-semibold py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
+                    >
+                      {submittingFeedback ? "Submitting..." : "Submit Feedback"}
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={onBackToDashboard}
+                      className="border-2 border-gray-500/50 bg-gray-500/10 hover:bg-gray-500/20 text-gray-300 hover:text-gray-200 font-semibold py-4 px-8 rounded-xl backdrop-blur-sm transition-all"
+                    >
+                      <Home className="h-5 w-5 mr-2" />
+                      Skip
+                    </Button>
+                  </div>
+                </form>
+              ) : (
+                <div className="text-center space-y-6 py-8">
+                  <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mb-6 shadow-2xl">
+                    <CheckCircle className="h-10 w-10 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-3">Thank you for your feedback!</h3>
+                    <p className="text-gray-300 text-lg mb-8 max-w-md mx-auto">
+                      Your input helps us create better quizzes for everyone. 🙏
                     </p>
-                  )}
+                    <Button
+                      onClick={onBackToDashboard}
+                      className="bg-gradient-to-r from-purple-500 to-violet-500 hover:from-purple-600 hover:to-violet-600 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all text-lg"
+                    >
+                      <Home className="h-5 w-5 mr-2" />
+                      Back to Dashboard
+                    </Button>
+                  </div>
                 </div>
-
-                {/* Feedback Text */}
-                <div className="space-y-2">
-                  <Label htmlFor="feedback" className="text-sm font-medium">
-                    Additional Comments (Optional)
-                  </Label>
-                  <Textarea
-                    id="feedback"
-                    placeholder="What did you think about this quiz? Any suggestions for improvement?"
-                    value={feedbackText}
-                    onChange={(e) => setFeedbackText(e.target.value)}
-                    rows={4}
-                    className="resize-none"
-                  />
-                </div>
-
-                <div className="flex gap-3">
-                  <Button type="submit" disabled={submittingFeedback || rating === 0} className="flex-1">
-                    {submittingFeedback ? "Submitting..." : "Submit Feedback"}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={onBackToDashboard}
-                    className="flex items-center gap-2 bg-transparent"
-                  >
-                    <Home className="h-4 w-4" />
-                    Skip
-                  </Button>
-                </div>
-              </form>
-            ) : (
-              <div className="text-center space-y-4 py-6">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-                  <CheckCircle className="h-8 w-8 text-green-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Thank you for your feedback!</h3>
-                  <p className="text-gray-600 mb-6">Your input helps us create better quizzes for everyone.</p>
-                  <Button onClick={onBackToDashboard} className="flex items-center gap-2">
-                    <Home className="h-4 w-4" />
-                    Back to Dashboard
-                  </Button>
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+              )}
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   )
