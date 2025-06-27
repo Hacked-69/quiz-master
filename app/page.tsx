@@ -7,8 +7,9 @@ import { QuizDashboard } from "@/components/quiz-dashboard"
 import { QuizCreator } from "@/components/quiz-creator"
 import { QuizTaker } from "@/components/quiz-taker"
 import { Toaster } from "@/components/ui/toaster"
+import { QuizAttempts } from "@/components/quiz-attempts"
 
-type View = "dashboard" | "create" | "take"
+type View = "dashboard" | "create" | "take" | "attempts"
 
 interface Quiz {
   id: string
@@ -74,15 +75,25 @@ export default function Home() {
     setSelectedQuiz(null)
   }
 
+  const handleViewAttempts = () => {
+    setCurrentView("attempts")
+  }
+
   return (
     <>
       {currentView === "dashboard" && (
-        <QuizDashboard user={user} onCreateQuiz={handleCreateQuiz} onTakeQuiz={handleTakeQuiz} />
+        <QuizDashboard
+          user={user}
+          onCreateQuiz={handleCreateQuiz}
+          onTakeQuiz={handleTakeQuiz}
+          onViewAttempts={handleViewAttempts}
+        />
       )}
       {currentView === "create" && <QuizCreator user={user} onBack={handleBackToDashboard} />}
       {currentView === "take" && selectedQuiz && (
         <QuizTaker quiz={selectedQuiz} user={user} onBack={handleBackToDashboard} />
       )}
+      {currentView === "attempts" && <QuizAttempts user={user} onBack={handleBackToDashboard} />}
       <Toaster />
     </>
   )

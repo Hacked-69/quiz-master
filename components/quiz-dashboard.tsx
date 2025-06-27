@@ -5,7 +5,7 @@ import { supabase } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Plus, Clock, User, Trophy } from "lucide-react"
+import { Plus, Clock, User, Trophy, History } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 interface Quiz {
@@ -21,9 +21,10 @@ interface QuizDashboardProps {
   user: any
   onCreateQuiz: () => void
   onTakeQuiz: (quiz: Quiz) => void
+  onViewAttempts: () => void
 }
 
-export function QuizDashboard({ user, onCreateQuiz, onTakeQuiz }: QuizDashboardProps) {
+export function QuizDashboard({ user, onCreateQuiz, onTakeQuiz, onViewAttempts }: QuizDashboardProps) {
   const [quizzes, setQuizzes] = useState<Quiz[]>([])
   const [loading, setLoading] = useState(true)
   const { toast } = useToast()
@@ -76,6 +77,10 @@ export function QuizDashboard({ user, onCreateQuiz, onTakeQuiz }: QuizDashboardP
             <Button onClick={onCreateQuiz} className="flex items-center gap-2">
               <Plus className="h-4 w-4" />
               Create Quiz
+            </Button>
+            <Button variant="outline" onClick={onViewAttempts} className="flex items-center gap-2 bg-transparent">
+              <History className="h-4 w-4" />
+              My Attempts
             </Button>
             <Button variant="outline" onClick={handleSignOut}>
               Sign Out
