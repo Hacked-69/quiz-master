@@ -175,39 +175,39 @@ export function QuizDashboard({ user, onCreateQuiz, onTakeQuiz, onViewAttempts }
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-          <Card className="bg-gradient-to-br from-pink-500/20 to-rose-500/20 border-pink-500/30 backdrop-blur-xl">
+          <Card className="bg-white/10 backdrop-blur-xl border-pink-500/30 shadow-xl">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-pink-300 text-sm font-medium">Available Quizzes</p>
+                  <p className="text-gray-200 text-sm font-medium">Available Quizzes</p>
                   <p className="text-3xl font-bold text-white">{quizzes.length}</p>
                 </div>
-                <div className="p-3 bg-pink-500/30 rounded-xl">
-                  <BookOpen className="h-6 w-6 text-pink-300" />
+                <div className="p-3 bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl shadow-lg">
+                  <BookOpen className="h-6 w-6 text-white" />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border-blue-500/30 backdrop-blur-xl">
+          <Card className="bg-white/10 backdrop-blur-xl border-blue-500/30 shadow-xl">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-blue-300 text-sm font-medium">Your Attempts</p>
+                  <p className="text-gray-200 text-sm font-medium">Your Attempts</p>
                   <p className="text-3xl font-bold text-white">{recentAttempts.length}</p>
                 </div>
-                <div className="p-3 bg-blue-500/30 rounded-xl">
-                  <Target className="h-6 w-6 text-blue-300" />
+                <div className="p-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl shadow-lg">
+                  <Target className="h-6 w-6 text-white" />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 border-green-500/30 backdrop-blur-xl">
+          <Card className="bg-white/10 backdrop-blur-xl border-green-500/30 shadow-xl">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-green-300 text-sm font-medium">Avg. Score</p>
+                  <p className="text-gray-200 text-sm font-medium">Avg. Score</p>
                   <p className="text-3xl font-bold text-white">
                     {recentAttempts.length > 0
                       ? Math.round(
@@ -219,209 +219,226 @@ export function QuizDashboard({ user, onCreateQuiz, onTakeQuiz, onViewAttempts }
                     %
                   </p>
                 </div>
-                <div className="p-3 bg-green-500/30 rounded-xl">
-                  <TrendingUp className="h-6 w-6 text-green-300" />
+                <div className="p-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl shadow-lg">
+                  <TrendingUp className="h-6 w-6 text-white" />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-500/20 to-violet-500/20 border-purple-500/30 backdrop-blur-xl">
+          <Card className="bg-white/10 backdrop-blur-xl border-purple-500/30 shadow-xl">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-purple-300 text-sm font-medium">Active Users</p>
+                  <p className="text-gray-200 text-sm font-medium">Active Users</p>
                   <p className="text-3xl font-bold text-white">2.4K</p>
                 </div>
-                <div className="p-3 bg-purple-500/30 rounded-xl">
-                  <Users className="h-6 w-6 text-purple-300" />
+                <div className="p-3 bg-gradient-to-r from-purple-500 to-violet-500 rounded-xl shadow-lg">
+                  <Users className="h-6 w-6 text-white" />
                 </div>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-          {/* Available Quizzes */}
-          <div className="xl:col-span-2 space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-                <Sparkles className="h-6 w-6 text-yellow-400" />
-                Available Quizzes
-              </h2>
-              <Badge className="bg-gradient-to-r from-pink-500 to-violet-500 text-white px-3 py-1">
-                {quizzes.length} Total
-              </Badge>
-            </div>
-
-            {quizzes.length === 0 ? (
-              <Card className="bg-white/5 backdrop-blur-xl border-white/10">
-                <CardContent className="text-center py-16">
-                  <div className="p-4 bg-gradient-to-r from-pink-500/20 to-violet-500/20 rounded-full w-fit mx-auto mb-6">
-                    <Trophy className="h-16 w-16 text-purple-400" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">No quizzes yet</h3>
-                  <p className="text-gray-400 mb-6 max-w-md mx-auto">
-                    Be the pioneer! Create the first quiz and start the learning revolution.
-                  </p>
-                  <Button
-                    onClick={onCreateQuiz}
-                    className="bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all"
-                  >
-                    <Plus className="h-5 w-5 mr-2" />
-                    Create Your First Quiz
-                  </Button>
-                </CardContent>
-              </Card>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {quizzes.map((quiz, index) => {
-                  const Icon = getQuizIcon(index)
-                  const gradient = getQuizGradient(index)
-
-                  return (
-                    <Card
-                      key={quiz.id}
-                      className="bg-white/5 backdrop-blur-xl border-white/10 hover:bg-white/10 transition-all duration-300 group hover:scale-105 hover:shadow-2xl"
-                    >
-                      <CardHeader className="pb-3">
-                        <div className="flex items-start justify-between">
-                          <div
-                            className={`p-3 bg-gradient-to-r ${gradient} rounded-xl shadow-lg group-hover:shadow-xl transition-all`}
-                          >
-                            <Icon className="h-6 w-6 text-white" />
-                          </div>
-                          <div className="flex gap-2">
-                            <Badge variant="secondary" className="bg-white/10 text-gray-300 border-white/20">
-                              <Clock className="h-3 w-3 mr-1" />
-                              {quiz.time_limit}m
-                            </Badge>
-                            <Badge variant="outline" className="border-white/20 text-gray-300">
-                              <User className="h-3 w-3 mr-1" />
-                              {quiz.created_by === user.id ? "You" : "Other"}
-                            </Badge>
-                          </div>
-                        </div>
-                        <CardTitle className="text-xl text-white group-hover:text-purple-300 transition-colors">
-                          {quiz.title}
-                        </CardTitle>
-                        <CardDescription className="text-gray-400 line-clamp-2 min-h-[2.5rem]">
-                          {quiz.description || "Test your knowledge with this exciting quiz challenge!"}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="pt-0">
-                        <Button
-                          onClick={() => onTakeQuiz(quiz)}
-                          className={`w-full bg-gradient-to-r ${gradient} hover:shadow-lg text-white font-semibold py-3 rounded-xl transition-all group-hover:shadow-xl`}
-                        >
-                          <Trophy className="h-4 w-4 mr-2" />
-                          Start Challenge
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  )
-                })}
+        {/* Available Quizzes */}
+        <div className="xl:col-span-2 space-y-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-gradient-to-r from-pink-500 to-violet-500 rounded-2xl shadow-lg">
+                <Sparkles className="h-6 w-6 text-white" />
               </div>
-            )}
+              <div>
+                <h2 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                  Available Quizzes
+                </h2>
+                <p className="text-gray-300 text-sm">Discover and challenge yourself</p>
+              </div>
+            </div>
+            <Badge className="bg-gradient-to-r from-pink-500 to-violet-500 text-white px-4 py-2 text-sm font-semibold shadow-lg">
+              {quizzes.length} Total
+            </Badge>
           </div>
 
-          {/* Recent Activity Sidebar */}
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-              <Award className="h-6 w-6 text-yellow-400" />
-              Recent Activity
-            </h2>
+          {quizzes.length === 0 ? (
+            <Card className="bg-white/5 backdrop-blur-xl border-white/10">
+              <CardContent className="text-center py-16">
+                <div className="p-4 bg-gradient-to-r from-pink-500/20 to-violet-500/20 rounded-full w-fit mx-auto mb-6">
+                  <Trophy className="h-16 w-16 text-purple-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3">No quizzes yet</h3>
+                <p className="text-gray-400 mb-6 max-w-md mx-auto">
+                  Be the pioneer! Create the first quiz and start the learning revolution.
+                </p>
+                <Button
+                  onClick={onCreateQuiz}
+                  className="bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all"
+                >
+                  <Plus className="h-5 w-5 mr-2" />
+                  Create Your First Quiz
+                </Button>
+              </CardContent>
+            </Card>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {quizzes.map((quiz, index) => {
+                const Icon = getQuizIcon(index)
+                const gradient = getQuizGradient(index)
 
-            {recentAttempts.length === 0 ? (
-              <Card className="bg-white/5 backdrop-blur-xl border-white/10">
-                <CardContent className="text-center py-12">
-                  <div className="p-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full w-fit mx-auto mb-4">
-                    <History className="h-8 w-8 text-blue-400" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">No attempts yet</h3>
-                  <p className="text-gray-400 text-sm mb-4">Start taking quizzes to see your progress here!</p>
-                  <Button
-                    variant="outline"
-                    onClick={onViewAttempts}
-                    className="border-blue-500/50 bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 hover:text-blue-200"
+                return (
+                  <Card
+                    key={quiz.id}
+                    className="bg-white/5 backdrop-blur-xl border-white/10 hover:bg-white/10 transition-all duration-300 group hover:scale-105 hover:shadow-2xl"
                   >
-                    View All Attempts
-                  </Button>
-                </CardContent>
-              </Card>
-            ) : (
-              <div className="space-y-4">
-                {recentAttempts.map((attempt, index) => {
-                  const percentage = Math.round((attempt.score / attempt.total_questions) * 100)
-                  const getScoreColor = (score: number) => {
-                    if (score >= 90) return "text-yellow-400"
-                    if (score >= 80) return "text-green-400"
-                    if (score >= 70) return "text-blue-400"
-                    if (score >= 60) return "text-orange-400"
-                    return "text-red-400"
-                  }
-
-                  return (
-                    <Card
-                      key={attempt.id}
-                      className="bg-white/5 backdrop-blur-xl border-white/10 hover:bg-white/10 transition-all"
-                    >
-                      <CardContent className="p-4">
-                        <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-semibold text-white text-sm truncate">{attempt.quizzes.title}</h4>
-                          <Badge className={`${getScoreColor(percentage)} bg-white/10`}>{percentage}%</Badge>
+                    <CardHeader className="pb-3">
+                      <div className="flex items-start justify-between">
+                        <div
+                          className={`p-3 bg-gradient-to-r ${gradient} rounded-xl shadow-lg group-hover:shadow-xl transition-all`}
+                        >
+                          <Icon className="h-6 w-6 text-white" />
                         </div>
-                        <div className="flex items-center justify-between text-xs text-gray-400">
-                          <span>
-                            {attempt.score}/{attempt.total_questions} correct
-                          </span>
-                          <span>{new Date(attempt.completed_at).toLocaleDateString()}</span>
+                        <div className="flex gap-2">
+                          <Badge variant="secondary" className="bg-white/10 text-gray-300 border-white/20">
+                            <Clock className="h-3 w-3 mr-1" />
+                            {quiz.time_limit}m
+                          </Badge>
+                          <Badge variant="outline" className="border-white/20 text-gray-300">
+                            <User className="h-3 w-3 mr-1" />
+                            {quiz.created_by === user.id ? "You" : "Other"}
+                          </Badge>
                         </div>
-                      </CardContent>
-                    </Card>
-                  )
-                })}
+                      </div>
+                      <CardTitle className="text-xl text-white group-hover:text-purple-300 transition-colors">
+                        {quiz.title}
+                      </CardTitle>
+                      <CardDescription className="text-gray-400 line-clamp-2 min-h-[2.5rem]">
+                        {quiz.description || "Test your knowledge with this exciting quiz challenge!"}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <Button
+                        onClick={() => onTakeQuiz(quiz)}
+                        className={`w-full bg-gradient-to-r ${gradient} hover:shadow-lg text-white font-semibold py-3 rounded-xl transition-all group-hover:shadow-xl`}
+                      >
+                        <Trophy className="h-4 w-4 mr-2" />
+                        Start Challenge
+                      </Button>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+            </div>
+          )}
+        </div>
 
+        {/* Recent Activity Sidebar */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl shadow-lg">
+              <Award className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
+                Recent Activity
+              </h2>
+              <p className="text-gray-300 text-sm">Your latest achievements</p>
+            </div>
+          </div>
+
+          {recentAttempts.length === 0 ? (
+            <Card className="bg-white/5 backdrop-blur-xl border-white/10">
+              <CardContent className="text-center py-12">
+                <div className="p-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full w-fit mx-auto mb-4">
+                  <History className="h-8 w-8 text-blue-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">No attempts yet</h3>
+                <p className="text-gray-400 text-sm mb-4">Start taking quizzes to see your progress here!</p>
                 <Button
                   variant="outline"
                   onClick={onViewAttempts}
-                  className="w-full border-purple-500/50 bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 hover:text-purple-200 font-semibold py-3 rounded-xl backdrop-blur-sm transition-all"
+                  className="border-blue-500/50 bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 hover:text-blue-200"
                 >
-                  <History className="h-4 w-4 mr-2" />
-                  View All Progress
+                  View All Attempts
                 </Button>
-              </div>
-            )}
-
-            {/* Quick Stats */}
-            <Card className="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 border-indigo-500/30 backdrop-blur-xl">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg text-white flex items-center gap-2">
-                  <Star className="h-5 w-5 text-yellow-400" />
-                  Your Stats
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-300 text-sm">Total Attempts</span>
-                  <span className="text-white font-semibold">{recentAttempts.length}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-300 text-sm">Best Score</span>
-                  <span className="text-yellow-400 font-semibold">
-                    {recentAttempts.length > 0
-                      ? Math.max(...recentAttempts.map((a) => Math.round((a.score / a.total_questions) * 100)))
-                      : 0}
-                    %
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-300 text-sm">Streak</span>
-                  <span className="text-green-400 font-semibold">🔥 3 days</span>
-                </div>
               </CardContent>
             </Card>
-          </div>
+          ) : (
+            <div className="space-y-4">
+              {recentAttempts.map((attempt, index) => {
+                const percentage = Math.round((attempt.score / attempt.total_questions) * 100)
+                const getScoreColor = (score: number) => {
+                  if (score >= 90) return "text-yellow-400"
+                  if (score >= 80) return "text-green-400"
+                  if (score >= 70) return "text-blue-400"
+                  if (score >= 60) return "text-orange-400"
+                  return "text-red-400"
+                }
+
+                return (
+                  <Card
+                    key={attempt.id}
+                    className="bg-white/5 backdrop-blur-xl border-white/10 hover:bg-white/10 transition-all"
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-semibold text-white text-sm truncate">{attempt.quizzes.title}</h4>
+                        <Badge className={`${getScoreColor(percentage)} bg-white/10`}>{percentage}%</Badge>
+                      </div>
+                      <div className="flex items-center justify-between text-xs text-gray-400">
+                        <span>
+                          {attempt.score}/{attempt.total_questions} correct
+                        </span>
+                        <span>{new Date(attempt.completed_at).toLocaleDateString()}</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+
+              <Button
+                variant="outline"
+                onClick={onViewAttempts}
+                className="w-full border-purple-500/50 bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 hover:text-purple-200 font-semibold py-3 rounded-xl backdrop-blur-sm transition-all"
+              >
+                <History className="h-4 w-4 mr-2" />
+                View All Progress
+              </Button>
+            </div>
+          )}
+
+          {/* Quick Stats */}
+          <Card className="bg-white/10 backdrop-blur-xl border-indigo-500/30 shadow-xl">
+            <CardHeader className="pb-3">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl shadow-lg">
+                  <Star className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <CardTitle className="text-lg font-bold text-white">Your Stats</CardTitle>
+                  <p className="text-gray-300 text-xs">Personal performance</p>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg border border-white/10">
+                <span className="text-gray-200 text-sm font-medium">Total Attempts</span>
+                <span className="text-white font-bold text-lg">{recentAttempts.length}</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg border border-white/10">
+                <span className="text-gray-200 text-sm font-medium">Best Score</span>
+                <span className="text-yellow-400 font-bold text-lg">
+                  {recentAttempts.length > 0
+                    ? Math.max(...recentAttempts.map((a) => Math.round((a.score / a.total_questions) * 100)))
+                    : 0}
+                  %
+                </span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg border border-white/10">
+                <span className="text-gray-200 text-sm font-medium">Current Streak</span>
+                <span className="text-green-400 font-bold text-lg">🔥 3 days</span>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
